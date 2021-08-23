@@ -1,0 +1,33 @@
+[
+    {
+        "icon": "bx bx-user",
+        "count": "195",
+        "title": "Total des utilisateurs"
+    },
+    {
+        "icon": "bx bx-user",
+        "count": "1,711",
+        "title": "Total des Medecins"
+    },
+    {
+        "icon": "bx bx-user",
+        "count": "311",
+        "title": "Total des Patients"
+    },
+    {
+        "icon": "bx bx-user",
+        "count": "111",
+        "title": "Total des centres medicaux"
+    },
+    {
+        "icon": "bx bx-cart",
+        "count": "2,001",
+        "title": "Visites quotidiennes"
+    },
+    {
+        "icon": "bx bx-dollar-circle",
+        "count": "$2,632",
+        "title": "Total income"
+    }
+    
+]
