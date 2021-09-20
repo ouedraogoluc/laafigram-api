@@ -2,52 +2,28 @@ import React, { useState, useEffect } from 'react'
 import PageHeader from '../component/pageHeader/pageHeader'
 import PeopleOutlineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
 import { Paper, makeStyles, TableBody, TableRow, TableCell, Toolbar, InputAdornment } from '@material-ui/core';
-import FormMedecin from './formFolder/FormMedecin';
+import PaysForm from './formFolder/PaysForm';
 import useForm from './formFolder/useForm';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import Controls from "../component/control/Controls";
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import useTable from '../pages/formFolder/useTable'
+import useTable from './formFolder/useTable'
 import Popup from './formFolder/Popup';
 
 import Table from '../component/table/Table'
 
 import customerList from '../assets/JsonData/customers-list.json'
-import { db, auth } from '../backend/firebase/config'
-import firebase from 'firebase'
-import "firebase/firestore";
 
-const Medecin = () => {
+const Pays = () => {
     // const [records, setRecords] = useState(employeeService.getAllEmployees())
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const classes = useStyles();
-    const [users, setUsers] = useState([]);
-    const [profile, setProfile] = useState('')
-    const [update, setUpdate] = useState('');
-    const [toUpdateId, setToUpdateId] = useState('');
+    
 
-    useEffect(() => {
-        const subscriber = db
-            .collection('users')
-            .where('status', '==', 'medecin')
-            .onSnapshot(querySnapshot => {
-                const users = [];
-                querySnapshot.forEach(documentSnapshot => {
-                    users.push({
-                        ...documentSnapshot.data(),
-                        key: documentSnapshot.id,
-                    });
-                });
 
-                setUsers(users);
-            });
-
-        // Unsubscribe from events when no longer in use
-        return () => subscriber();
-    }, []);
     const handleSearch = e => {
         let target = e.target;
         setFilterFn({
@@ -63,7 +39,7 @@ const Medecin = () => {
     return (
         <>
             <PageHeader
-                title="new"
+                title="pays"
                 subTitle="form"
                 icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
             />
@@ -71,7 +47,7 @@ const Medecin = () => {
             <Paper className={classes.pageContent}>
                 <Toolbar>
                     <Controls.Input
-                        label="Search Employees"
+                        label="Search pays"
                         className={classes.searchInput}
                         InputProps={{
                             startAdornment: (<InputAdornment position="start">
@@ -81,7 +57,7 @@ const Medecin = () => {
                         onChange={handleSearch}
                     />
                     <Controls.Button
-                        text="Add New"
+                        text="Add pays"
                         variant="outlined"
                         startIcon={<AddIcon />}
                         className={classes.newButton}
@@ -102,25 +78,13 @@ const Medecin = () => {
                     <div className="row">
                         <div className="col-12 col-md-12">
                             <div className="card">
-                                <div className="card-header">Medecin Management | {users.length} </div>
+                                <div className="card-header">new Management |  </div>
                                 <div className="card-body position-relative">
                                     <div className="table-responsive cnstr-record product-tbl">
                                         <table className="table table-bordered heading-hvr">
                                             <thead>
                                                 <tr>
-                                                    <th className="active">Full Name</th>
-                                                    
-                                                    <th>Adresse</th>
-                                                    <th>specialite</th>
-                                                    <th>number</th>
-                                                    <th>status</th>
-                                                    <th>codePostal</th>
-                                                    <th>email</th>
-                                                    <th>Specialité</th>
-                                                   
-                                                    <th>Niveau d'etude</th>
-                                                  
-                                                    
+                                                    <th>pays</th>
                                                     <th width="60">detail </th>
                                                     <th width="60">Edit </th>
                                                     <th width="60"> delete</th>
@@ -128,37 +92,9 @@ const Medecin = () => {
                                             </thead>
                                         </table>
                                         <tbody>
-                                            {
-                                                users.map(user => (
-                                                    <tr key={user.id} >
-                                                        <td>{user.fullName}</td>
-                                                        <td>{user.address}</td>
-                                                        <td>{user.specialite}</td>
-                                                        <td>{user.number}</td>
-                                                        <td>{user.status}</td>
-                                                        <td>{user.codePostal}</td>
-                                                        <td>{user.email}</td>
-                                                        
-                                                        <td>{user.niveauEtude}</td>
-                                           
-                                                        <td >
-                                                            <button type="button" className="btn btn-warning"
-                                                            // onClick={() => { setCurrentId(key) }}
-                                                            >show</button>
-
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" className="btn btn-info"
-                                                            // onClick={() => { setCurrentId(key) }}
-                                                            >Edit</button>
-
-                                                        </td>
-                                                        <td> <button type="button" className="btn btn-danger"
-                                                        //onClick={() => { onDelete(key) }}
-                                                        >Delete</button></td>
-                                                    </tr>
-                                                ))
-                                            }
+                                          <tr>
+                                            <td>Burkina</td>
+                                          </tr>
                                         </tbody>
                                     </div>
                                 </div>
@@ -178,13 +114,13 @@ const Medecin = () => {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
             >
-                <FormMedecin />
+                <PaysForm />
             </Popup>
         </>
     )
 }
 
-export default Medecin
+export default Pays
 
 const useStyles = makeStyles(theme => ({
     pageContent: {

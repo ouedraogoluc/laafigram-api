@@ -1,10 +1,10 @@
-import React, {useRef, useState, useEffect} from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 import './thememenu.css'
 
-//import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-//import ThemeAction from '../../redux/actions/ThemeAction'
+import ThemeAction from '../../redux/actions/ThemeAction'
 
 const mode_settings = [
     {
@@ -86,17 +86,15 @@ const ThemeMenu = () => {
     const setMode = mode => {
         setcurrMode(mode.id)
         localStorage.setItem('themeMode', mode.class)
-       // dispatch(ThemeAction.setMode(mode.class))
-    } 
+        dispatch(ThemeAction.setMode(mode.class))
+    }
 
     const setColor = color => {
         setcurrColor(color.id)
         localStorage.setItem('colorMode', color.class)
-       // dispatch(ThemeAction.setColor(color.class))
+        dispatch(ThemeAction.setColor(color.class))
     }
-    /* const dispatch = useDispatch()
-
-    
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const themeClass = mode_settings.find(e => e.class === localStorage.getItem('themeMode', 'theme-mode-light'))
@@ -108,7 +106,7 @@ const ThemeMenu = () => {
         if (colorClass !== undefined) setcurrColor(colorClass.id)
 
     }, []);
-*/
+
     return (
         <div>
             <button ref={menu_toggle_ref} className="dropdown__toggle" onClick={() => setActiveMenu()}>

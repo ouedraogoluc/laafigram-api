@@ -1,33 +1,27 @@
 [
     {
         "icon": "bx bx-user",
-        "count": "195",
+        "count": "21",
         "title": "Total des utilisateurs"
     },
     {
         "icon": "bx bx-user",
-        "count": "1,711",
+        "count": "9",
         "title": "Total des Medecins"
     },
     {
         "icon": "bx bx-user",
-        "count": "311",
+        "count": "4",
         "title": "Total des Patients"
     },
     {
         "icon": "bx bx-user",
-        "count": "111",
+        "count": "8",
         "title": "Total des centres medicaux"
     },
     {
-        "icon": "bx bx-cart",
-        "count": "2,001",
-        "title": "Visites quotidiennes"
-    },
-    {
-        "icon": "bx bx-dollar-circle",
-        "count": "$2,632",
-        "title": "Total income"
+        "icon": "bx bx-user",
+        "count": "8",
+        "title": "Total des centres medicaux"
     }
-    
 ]
