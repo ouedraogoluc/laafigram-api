@@ -16,13 +16,36 @@ import Table from '../component/table/Table'
 
 import customerList from '../assets/JsonData/customers-list.json'
 
+import {Article}  from "../service/Article";
+import NewsArticle from './NewsArticle';
+
 const New = () => {
+
+    const [articles , setArticles ] = useState([]);
+
     // const [records, setRecords] = useState(employeeService.getAllEmployees())
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const classes = useStyles();
     
 
+    useEffect( () => {
+        loadArticle();
+    }, [] );
+   
+    const loadArticle = () => {
+        
+        try {
+            const response =  Article.getArticles();
+            setArticles(response);
+            console.log(response);
+            console.log(articles);
+        } catch ({error}) {
+            console.log(error);
+        }
+        
+        
+    }
 
     const handleSearch = e => {
         let target = e.target;
@@ -84,34 +107,15 @@ const New = () => {
                                         <table className="table table-bordered heading-hvr">
                                             <thead>
                                                 <tr>
-                                                    <th className="active">titre</th>
-                                                   
-                                                    <th>subtitle</th>
+                                                    <th className="active">title</th>
+                                                    <th>Source</th>
                                                     <th>Content</th>
-                                                    <td>Media</td>
-                
+                                                    <td>date</td>
                                                 </tr>
                                             </thead>
                                         </table>
                                         <tbody>
-                                          <tr>
-                                            <td>Technologie santé</td>
-                                            <td>Quel impact la technologie a T-elle sur les soins de santé ?',</td>
-                                            <td>De plus, les résultats montrent que les malades les plus connectés sont ceux qui se sentent  les plus engagés dans la.......</td>
-                                            <td>image</td>
-                                          </tr>
-                                          <tr>
-                                            <td>Coronavirus</td>
-                                            <td>Communiqué de Presse N°566 du Samedi 18 Septembre 2021, du Ministère de la Santé et de l’Action sociale</td>
-                                            <td>SymptômesPréventionTraitements La COVID-19 affecte les individus de différentes manières. La plupart des personnes infectées développent... </td>
-                                           <td><img src="" alt="" srcset="" /></td>
-                                          </tr>
-                                          <tr>
-                                            <td>malaria</td>
-                                            <td>Au senegal</td>
-                                            <td>Le paludisme (ou malaria) est une maladie qui peut être mortelle...</td>
-                                            <td><img src="C:\Users\OUEDRAOGO LUC\Desktop\Projet_React\monProjet\test\laafigram2.0\images\malaria.jpg"  alt="" srcset="" /> </td>
-                                          </tr>
+                                         { articles.map(  article  =>  <NewsArticle key={article.id} article={article} />  ) }
                                         </tbody>
                                     </div>
                                 </div>
